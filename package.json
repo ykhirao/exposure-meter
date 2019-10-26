@@ -1,0 +1,23 @@
+{
+  "name": "exposures",
+  "version": "1.0.0",
+  "description": "My well-made Nuxt.js project",
+  "author": "yk",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/bulma": "^1.2.1",
+    "@nuxtjs/pwa": "^3.0.0-beta.19",
+    "cross-env": "^6.0.3",
+    "nuxt": "^2.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
