@@ -10,7 +10,8 @@
     "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy": "yarn build:gh-pages && push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "yarn build:gh-pages && npx push-dir --dir=dist --branch=gh-pages --cleanup",
+    "deploy:only": "npx push-dir --dir=dist --branch=gh-pages --cleanup",
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
