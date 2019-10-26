@@ -7,9 +7,10 @@
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",
+    "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy": "yarn build && npx gh-pages -d dist"
+    "deploy": "yarn build:gh-pages && push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
@@ -20,6 +21,7 @@
   },
   "devDependencies": {
     "gh-pages": "^2.1.1",
-    "nodemon": "^1.18.9"
+    "nodemon": "^1.18.9",
+    "push-dir": "^0.4.1"
   }
 }
