@@ -68,5 +68,13 @@ export default {
     */
     extend(config, ctx) {
     }
+  },
+
+  /*
+  ** Router configuration
+  ** For GitHub pages
+  */
+  router: {
+    base: '/exposures/'
   }
 }
