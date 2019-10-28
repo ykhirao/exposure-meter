@@ -5,7 +5,7 @@ import pkg from './package'
 //     base: '/exposures/'
 //   }
 // } : {}
-const DEPLOY_ENV = {};
+const routerBase = {};
 
 export default {
   mode: 'spa',
