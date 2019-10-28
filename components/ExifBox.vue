@@ -1,7 +1,6 @@
 <template>
   <div class="box">
     <article class="media">
-      <div class="media-left"></div>
       <div class="media-content">
         <div class="content">
           <p>
@@ -31,9 +30,46 @@
           </div>
         </nav>
       </div>
+      <figure class="image is-128x128">
+        <img :src="imageUrl" id="image" />
+      </figure>
     </article>
   </div>
 </template>
+<script>
+import EXIF from "exif-js";
+export default {
+  props: ["url"],
+  computed: {
+    imageUrl: function() {
+      return this.url.trim();
+    }
+  },
+  mounted: function() {
+    const image = document.getElementById("image");
+    console.log(image);
+    require("exif-js");
+    console.log(EXIF);
+    window.onload = getExif;
+
+    function getExif() {
+      const img1 = document.getElementById("image");
+      EXIF.getData(img1, function() {
+        var FNumber = EXIF.getTag(this, "FNumber");
+        console.log(FNumber);
+        var model = EXIF.getTag(this, "Model");
+      });
+
+      var img2 = document.getElementById("img2");
+      EXIF.getData(img2, function() {
+        var allMetaData = EXIF.getAllTags(this);
+        var allMetaDataSpan = document.getElementById("allMetaDataSpan");
+        allMetaDataSpan.innerHTML = JSON.stringify(allMetaData, null, "\t");
+      });
+    }
+  }
+};
+</script>
 <style scoped>
 .box {
   background-color: rgba(0, 0, 0, 0.5);

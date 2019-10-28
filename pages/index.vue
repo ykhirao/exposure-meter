@@ -2,7 +2,7 @@
   <section class="container" v-bind:style="{ backgroundImage }">
     <div>
       <Nav />
-      <ExifBox />
+      <ExifBox :url="   imageUrl" />
       <h1 class="title">exposures</h1>
       <h2 class="subtitle">My well-made Nuxt.js project</h2>
       <AddButton />
