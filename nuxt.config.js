@@ -1,6 +1,6 @@
 import pkg from './package'
 
-// const DEPLOY_ENV = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+// const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
 //   router: {
 //     base: '/exposures/'
 //   }

@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt",
-    "build": "nuxt build",
+    "build": "rm -fr .nuxt/ && rm -fr dist/ && nuxt build",
     "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
