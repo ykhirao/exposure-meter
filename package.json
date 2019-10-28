@@ -11,7 +11,7 @@
     "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy:gh-pages": "yar clearn && yarn build:gh-pages && npx push-dir --dir=dist --branch=gh-pages --cleanup",
+    "deploy:gh-pages": "yarn clearn && yarn build:gh-pages && npx push-dir --dir=dist --branch=gh-pages --cleanup",
     "deploy": "npx push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
