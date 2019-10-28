@@ -5,12 +5,13 @@
   "author": "yk",
   "private": true,
   "scripts": {
+    "clearn": "rm -fr .nuxt/ && rm -fr dist/",
     "dev": "nuxt",
-    "build": "rm -fr .nuxt/ && rm -fr dist/ && nuxt build",
+    "build": "nuxt build",
     "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
-    "deploy:gh-pages": "yarn build:gh-pages && npx push-dir --dir=dist --branch=gh-pages --cleanup",
+    "deploy:gh-pages": "yar clearn && yarn build:gh-pages && npx push-dir --dir=dist --branch=gh-pages --cleanup",
     "deploy": "npx push-dir --dir=dist --branch=gh-pages --cleanup"
   },
   "dependencies": {
