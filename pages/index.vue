@@ -1,37 +1,42 @@
 <template>
-  <section class="container">
+  <section class="container" v-bind:style="{ backgroundImage }">
     <div>
-      <logo />
-      <h1 class="title">
-        exposures
-      </h1>
-      <h2 class="subtitle">
-        My well-made Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
+      <Nav />
+      <ExifBox />
+      <h1 class="title">exposures</h1>
+      <h2 class="subtitle">My well-made Nuxt.js project</h2>
+      <AddButton />
+      <span class="icon">
+        <i class="fas fa-home"></i>
+      </span>
     </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+// import Logo from "~/components/Logo.vue";
+import ExifBox from "~/components/ExifBox.vue";
+import Nav from "~/components/Nav.vue";
+import AddButton from "~/components/AddButton.vue";
 
 export default {
   components: {
-    Logo
+    ExifBox,
+    Nav,
+    AddButton
+  },
+  data: function() {
+    return {
+      imageUrl:
+        "https://res.cloudinary.com/yk/image/upload/c_scale,w_600/v1572172606/expo/IMG_20190914_180940_j9t3y4.jpg"
+    };
+  },
+  computed: {
+    backgroundImage: function() {
+      return `url(${this.imageUrl})`;
+    }
   }
-}
+};
 </script>
 
 <style>
@@ -39,30 +44,10 @@ export default {
   margin: 0 auto;
   min-height: 100vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
   text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  /* background-image: url("https://res.cloudinary.com/yk/image/upload/c_scale,w_834/v1572172606/expo/IMG_20190914_180940_j9t3y4.jpg"); */
+  background-size: cover;
 }
 </style>
