@@ -21,7 +21,11 @@
     "nuxt": "^2.4.0"
   },
   "devDependencies": {
+    "concurrent-transform": "^1.0.0",
     "gh-pages": "^2.1.1",
+    "gulp": "^4.0.2",
+    "gulp-awspublish": "^4.0.0",
+    "gulp-cloudfront-invalidate-aws-publish": "^1.0.0",
     "nodemon": "^1.18.9",
     "push-dir": "^0.4.1"
   }

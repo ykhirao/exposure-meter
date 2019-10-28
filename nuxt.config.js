@@ -1,10 +1,11 @@
 import pkg from './package'
 
-const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
-  router: {
-    base: '/exposures/'
-  }
-} : {}
+// const DEPLOY_ENV = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+//   router: {
+//     base: '/exposures/'
+//   }
+// } : {}
+const DEPLOY_ENV = {};
 
 export default {
   mode: 'spa',
