@@ -38,6 +38,7 @@
 </template>
 <script>
 import EXIF from "exif-js";
+
 export default {
   props: ["url"],
   computed: {
@@ -46,27 +47,21 @@ export default {
     }
   },
   mounted: function() {
-    const image = document.getElementById("image");
-    console.log(image);
-    require("exif-js");
+    // console.log(image);
+    // require("exif-js");
     console.log(EXIF);
-    window.onload = getExif;
 
-    function getExif() {
+    window.onload = function() {
       const img1 = document.getElementById("image");
-      EXIF.getData(img1, function() {
-        var FNumber = EXIF.getTag(this, "FNumber");
-        console.log(FNumber);
-        var model = EXIF.getTag(this, "Model");
-      });
 
-      var img2 = document.getElementById("img2");
-      EXIF.getData(img2, function() {
-        var allMetaData = EXIF.getAllTags(this);
-        var allMetaDataSpan = document.getElementById("allMetaDataSpan");
-        allMetaDataSpan.innerHTML = JSON.stringify(allMetaData, null, "\t");
-      });
-    }
+      if (img1 && EXIF) {
+        EXIF.getData(img1, function() {
+          var FNumber = EXIF.getTag(this, "Model");
+          console.log(FNumber);
+          // var model = EXIF.getTag(this, "Model");
+        });
+      }
+    };
   }
 };
 </script>
