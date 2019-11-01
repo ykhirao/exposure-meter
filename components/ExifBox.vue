@@ -4,38 +4,28 @@
       <div class="media-content">
         <div class="content">
           <p>
+            <strong>EV!!!</strong>
+            <small>{{ev}}</small>
+            <br />
             <strong>ISO感度</strong>
             <small>{{exif.ISO}}</small>
-            <small>31m</small>
-            <br />Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sit amet massa fringilla egestas. Nullam condimentum luctus turpis.
+            <br />
+            <strong>F値</strong>
+            <small>{{exif.FNumber}}</small>
+            <br />
+            <strong>SS</strong>
+            <small>{{ss}}</small>
+            <br />
+            <strong>露出</strong>
+            <small>{{exif.ExposureBias}}</small>
+            <br />
+            <strong>画角(35mm換算)</strong>
+            <small>{{exif.FocalLengthIn35mmFilm}}</small>
+            <br />
           </p>
-          <div>ISO感度</div>
-          <div>F値 {{exif.FNumber}}</div>
-          <div>SS {{ss}}</div>
-          <div>露出 {{exif.ExposureBias}}</div>
-          <div>画角(35mm換算) {{exif.FocalLengthIn35mmFilm}} mm</div>
         </div>
-        <nav class="level is-mobile">
-          <div class="level-left">
-            <a class="level-item" aria-label="reply">
-              <span class="icon is-small">
-                <i class="fas fa-reply" aria-hidden="true"></i>
-              </span>
-            </a>
-            <a class="level-item" aria-label="retweet">
-              <span class="icon is-small">
-                <i class="fas fa-retweet" aria-hidden="true"></i>
-              </span>
-            </a>
-            <a class="level-item" aria-label="like">
-              <span class="icon is-small">
-                <i class="fas fa-heart" aria-hidden="true"></i>
-              </span>
-            </a>
-          </div>
-        </nav>
       </div>
-      <figure class="image is-128x128">
+      <figure class="image is-32x32">
         <img :src="imageUrl" id="image" />
       </figure>
     </article>
@@ -53,6 +43,17 @@ export default {
         return `1 / ${Math.round(1 / this.exif.ExposureTime)}`;
       }
       return undefined;
+    },
+    ev: function() {
+      try {
+        const tv = Math.log2(Math.round(1 / this.exif.ExposureTime));
+        const av = Math.log2(Math.pow(this.exif.FNumber, 2));
+        const isov = Math.log2(this.exif.ISO / 100);
+
+        return `${tv + av + isov}`.slice(0, 5);
+      } catch {
+        return "計算失敗";
+      }
     }
   }
 };

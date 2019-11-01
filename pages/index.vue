@@ -3,12 +3,6 @@
     <div>
       <Nav />
       <ExifBox :url="imageUrl" :exif="exif" />
-      <h1 class="title">exposures</h1>
-      <h2 class="subtitle">My well-made Nuxt.js project</h2>
-      <!-- <AddButton @click="$emit('enlarge-text')" /> -->
-      <span class="icon">
-        <i class="fas fa-home"></i>
-      </span>
       <div class="card">
         <label for="file">
           <input id="file" ref="fileInput" type="file" accept="image/*" @change="handleFile" />
@@ -35,7 +29,15 @@ export default {
     return {
       imageUrl:
         "https://res.cloudinary.com/yk/image/upload/c_scale,w_600/v1572172606/expo/IMG_20190914_180940_j9t3y4.jpg",
-      exif: {}
+      exif: {
+        ISO: 50,
+        FNumber: 2.2,
+        ExposureTime: 0.002108,
+        ExposureBias: 0,
+        FocalLengthIn35mmFilm: 26,
+        Thumbnail:
+          "https://res.cloudinary.com/yk/image/upload/c_scale,w_50/v1572172606/expo/IMG_20190914_180940_j9t3y4.jpg"
+      }
     };
   },
   computed: {
