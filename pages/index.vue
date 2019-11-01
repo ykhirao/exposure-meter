@@ -60,7 +60,7 @@ export default {
       loadImage.parseMetaData(file, data => {
         const ex = data.exif;
         if (ex) {
-          const ISO = ex.get(0x8827);
+          const ISO = ex.get("PhotographicSensitivity");
           const FNumber = ex.get("FNumber");
           const ExposureTime = ex.get("ExposureTime");
           const ExposureBias = ex.get("ExposureBias");
