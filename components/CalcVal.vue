@@ -2,11 +2,11 @@
   <div class="box">
     <article class="media">
       <div class="media-content">
-        <div>{{evdata}}</div>
-        <div>露出 ± {{Math.round((evdata - ev) * 100) / 100}}</div>
+        <div>露出: {{evText}}</div>
+        <div>目安: {{evComment}}</div>
       </div>
       <div class="media-content">
-        感度
+        <div>EV{{evdata}}用の露出</div>感度
         <div class="select">
           <select v-model="isov">
             <option v-for="iso in isos" v-bind:value="iso" v-bind:key="iso">{{ iso }}</option>
@@ -64,13 +64,33 @@ export default {
     evdata: function() {
       try {
         const av = Math.log2(Math.pow(this.av, 2));
-        const tv = Math.log2(Math.round(this.tv));
+        const tv = Math.log2(this.tv);
         const isov = Math.log2(this.isov / 100);
-        // console.log(tv, av, isov);
         return Math.round((tv + av + isov) * 100) / 100;
       } catch {
         return "計算失敗";
       }
+    },
+    evText: function() {
+      const num = Math.round((this.ev - this.evdata) * 100) / 100;
+      const plusMinus = Math.sign(num);
+      const symbol = plusMinus === 1 ? "+" : plusMinus === -1 ? "-" : "";
+
+      return `${symbol}${Math.abs(num)}`;
+    },
+    evComment: function() {
+      const num = Math.round((this.ev - this.evdata) * 100) / 100;
+      const str =
+        num > 2
+          ? "ハイキー"
+          : num >= 0.4
+          ? "明るめ"
+          : num >= -0.4
+          ? "適正"
+          : num >= -2
+          ? "暗め"
+          : "ローキー";
+      return str;
     }
   }
 };
