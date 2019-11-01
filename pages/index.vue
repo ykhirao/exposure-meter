@@ -8,6 +8,7 @@
           <input id="file" ref="fileInput" type="file" accept="image/*" @change="handleFile" />
         </label>
       </div>
+      <CalcVal :ev="exif.ev" />
     </div>
   </section>
 </template>
@@ -15,6 +16,7 @@
 <script>
 // import Logo from "~/components/Logo.vue";
 import ExifBox from "~/components/ExifBox.vue";
+import CalcVal from "~/components/CalcVal.vue";
 import Nav from "~/components/Nav.vue";
 import AddButton from "~/components/AddButton.vue";
 import loadImage from "blueimp-load-image";
@@ -23,7 +25,8 @@ export default {
   components: {
     ExifBox,
     Nav,
-    AddButton
+    AddButton,
+    CalcVal
   },
   data: function() {
     return {
@@ -35,6 +38,7 @@ export default {
         ExposureTime: 0.002108,
         ExposureBias: 0,
         FocalLengthIn35mmFilm: 26,
+        ev: 10.16,
         Thumbnail:
           "https://res.cloudinary.com/yk/image/upload/c_scale,w_50/v1572172606/expo/IMG_20190914_180940_j9t3y4.jpg"
       }
@@ -68,6 +72,17 @@ export default {
           const ExposureBias = ex.get("ExposureBias");
           const FocalLengthIn35mmFilm = ex.get("FocalLengthIn35mmFilm");
           const Thumbnail = ex.Thumbnail;
+          let ev;
+
+          try {
+            const tv = Math.log2(Math.round(1 / this.exif.ExposureTime));
+            const av = Math.log2(Math.pow(this.exif.FNumber, 2));
+            const isov = Math.log2(this.exif.ISO / 100);
+            ev = Math.round((tv + av + isov) * 100) / 100;
+          } catch {
+            ev = "計算失敗";
+          }
+          // ev = "tes";
 
           const exif = {
             ISO,
@@ -75,6 +90,7 @@ export default {
             ExposureTime,
             ExposureBias,
             FocalLengthIn35mmFilm,
+            ev,
             Thumbnail
           };
           this.exif = exif;

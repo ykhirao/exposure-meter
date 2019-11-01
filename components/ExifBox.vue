@@ -5,7 +5,7 @@
         <div class="content">
           <p>
             <strong>EV!!!</strong>
-            <small>{{ev}}</small>
+            <small>{{exif.ev}}</small>
             <br />
             <strong>ISO感度</strong>
             <small>{{exif.ISO}}</small>
@@ -14,13 +14,13 @@
             <small>{{exif.FNumber}}</small>
             <br />
             <strong>SS</strong>
-            <small>{{ss}}</small>
+            <small>{{ss}} 秒</small>
             <br />
-            <strong>露出</strong>
-            <small>{{exif.ExposureBias}}</small>
+            <strong>撮影</strong>
+            <small>± {{exif.ExposureBias}} EV</small>
             <br />
-            <strong>画角(35mm換算)</strong>
-            <small>{{exif.FocalLengthIn35mmFilm}}</small>
+            <strong>画角(35mmフィルム換算)</strong>
+            <small>{{exif.FocalLengthIn35mmFilm}} mm</small>
             <br />
           </p>
         </div>
@@ -43,17 +43,6 @@ export default {
         return `1 / ${Math.round(1 / this.exif.ExposureTime)}`;
       }
       return undefined;
-    },
-    ev: function() {
-      try {
-        const tv = Math.log2(Math.round(1 / this.exif.ExposureTime));
-        const av = Math.log2(Math.pow(this.exif.FNumber, 2));
-        const isov = Math.log2(this.exif.ISO / 100);
-
-        return `${tv + av + isov}`.slice(0, 5);
-      } catch {
-        return "計算失敗";
-      }
     }
   }
 };
