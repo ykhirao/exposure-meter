@@ -72,13 +72,13 @@ export default {
           const ExposureBias = ex.get("ExposureBias");
           const FocalLengthIn35mmFilm = ex.get("FocalLengthIn35mmFilm");
           const Thumbnail = ex.Thumbnail;
-          let ev;
 
+          let ev;
           try {
-            const tv = Math.log2(Math.round(1 / this.exif.ExposureTime));
-            const av = Math.log2(Math.pow(this.exif.FNumber, 2));
-            const isov = Math.log2(this.exif.ISO / 100);
-            console.log(isov);
+            const av = Math.log2(Math.pow(FNumber, 2));
+            const tv = Math.log2(Math.round(1 / ExposureTime));
+            const isov = Math.log2(ISO / 100);
+            // console.log(av, tv, isov);
             ev = Math.round((tv + av - isov) * 100) / 100;
           } catch {
             ev = "計算失敗";
@@ -94,7 +94,8 @@ export default {
             ev,
             Thumbnail
           };
-          this.exif = exif;
+          // console.log(exif);
+          this.exif = { ...exif };
         }
       });
     }
