@@ -53,20 +53,37 @@ export default {
       return this.ev;
     },
     apertures: function() {
-      return [1.0, 1.4, 1.8, 2.0, 2.8, 4.0, 5.6, 8.0, 11, 16, 22, 32];
+      return [1.0, 1.4, 1.8, 2.0, 2.2, 2.8, 4.0, 5.6, 8.0, 11, 16, 22, 32];
     },
     isos: function() {
       return [50, 64, 100, 160, 200, 400, 800, 1600, 3200];
     },
     sss: function() {
-      return [1, 2, 4, 8, 15, 30, 60, 125, 250, 500, 1000, 2000, 4000, 8000];
+      return [
+        1,
+        2,
+        4,
+        8,
+        15,
+        30,
+        60,
+        125,
+        175,
+        250,
+        500,
+        1000,
+        2000,
+        4000,
+        8000
+      ];
     },
     evdata: function() {
       try {
         const av = Math.log2(Math.pow(this.av, 2));
         const tv = Math.log2(this.tv);
         const isov = Math.log2(this.isov / 100);
-        return Math.round((tv + av + isov) * 100) / 100;
+        // console.log(av, tv, isov, this.isov);
+        return Math.round((tv + av - isov) * 100) / 100;
       } catch {
         return "計算失敗";
       }

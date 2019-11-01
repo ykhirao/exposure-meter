@@ -38,7 +38,7 @@ export default {
         ExposureTime: 0.002108,
         ExposureBias: 0,
         FocalLengthIn35mmFilm: 26,
-        ev: 10.16,
+        ev: 12.16,
         Thumbnail:
           "https://res.cloudinary.com/yk/image/upload/c_scale,w_50/v1572172606/expo/IMG_20190914_180940_j9t3y4.jpg"
       }
@@ -78,7 +78,8 @@ export default {
             const tv = Math.log2(Math.round(1 / this.exif.ExposureTime));
             const av = Math.log2(Math.pow(this.exif.FNumber, 2));
             const isov = Math.log2(this.exif.ISO / 100);
-            ev = Math.round((tv + av + isov) * 100) / 100;
+            console.log(isov);
+            ev = Math.round((tv + av - isov) * 100) / 100;
           } catch {
             ev = "計算失敗";
           }
